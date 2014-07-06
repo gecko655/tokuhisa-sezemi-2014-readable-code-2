@@ -23,9 +23,9 @@ public class Main {
 		String recipeDataFilePath = args[0];
 		File recipeFile = new File(recipeDataFilePath);
 		try {
-			ArrayList<ReceipeData> receipeDataList = readRecipeData(recipeFile);
-			for(ReceipeData data : receipeDataList) {
-				System.out.println(data.getRecipeName());
+			ArrayList<RecipeData> receipeDataList = readRecipeData(recipeFile);
+			for(RecipeData data : receipeDataList) {
+				System.out.println(data.getRecipeId()+ ": "+ data.getRecipeName());
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -36,15 +36,17 @@ public class Main {
 		}
 	}
 	
-	public static ArrayList<ReceipeData> readRecipeData(File receipeDataFile) throws FileNotFoundException, IOException {
+	public static ArrayList<RecipeData> readRecipeData(File receipeDataFile) throws FileNotFoundException, IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(receipeDataFile));
-		ArrayList<ReceipeData> receipeDataList = new ArrayList<ReceipeData>();
+		ArrayList<RecipeData> receipeDataList = new ArrayList<RecipeData>();
 
 		try {
+			int idCount = 0;
 			while(reader.ready()) {
 				String receipeDataName = reader.readLine();
-				ReceipeData data = new ReceipeData(receipeDataName);
+				RecipeData data = new RecipeData(idCount, receipeDataName);
 				receipeDataList.add(data);
+				idCount += 1;
 			}
 			return receipeDataList;
 		} catch (IOException e) {
