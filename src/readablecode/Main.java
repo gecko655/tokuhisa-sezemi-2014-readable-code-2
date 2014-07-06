@@ -19,6 +19,7 @@ public class Main {
 			System.err.println("レシピデータのパスを引数で与えてください");
 			System.exit(1);
 		}
+		
 		String recipeDataFilePath = args[0];
 		File recipeFile = new File(recipeDataFilePath);
 		try {
