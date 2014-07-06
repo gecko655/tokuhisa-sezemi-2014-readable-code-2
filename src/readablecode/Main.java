@@ -15,19 +15,20 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		if(args.length == 0) {
-			System.err.println("レシピデータのパスを引数で与えてください");
+		if(args.length <=1) {
+			System.err.println("レシピデータのパスとユーザー名を引数で与えてください");
 			System.exit(1);
 		}
 		
 		String recipeDataFilePath = args[0];
 		File recipeFile = new File(recipeDataFilePath);
-		if(args.length==1){
-			printRecipe(recipeFile);
-		}else if(args.length==2){
+		String userName = args[1];
+		if(args.length==2){
+			printRecipe(recipeFile,userName);
+		}else if(args.length==3){
 			if(isNaturalNumber(args[1])){
 				long specifiedId = Long.valueOf(args[1]);
-				printRecipe(recipeFile,specifiedId);
+				printRecipe(recipeFile,userName,specifiedId);
 			}else{
 				System.err.println("第2引数は整数値を与えてください");
 				System.exit(1);
@@ -35,8 +36,8 @@ public class Main {
 		}
 	}
 	
-	private static void printRecipe(File recipeFile) {
-		printRecipe(recipeFile,0);
+	private static void printRecipe(File recipeFile,String userName) {
+		printRecipe(recipeFile,userName,0);
 	}
 
 	/**
@@ -45,9 +46,10 @@ public class Main {
 	 * @param recipeFile
 	 * @param specifiedId
 	 */
-	private static void printRecipe(File recipeFile, long specifiedId) {
+	private static void printRecipe(File recipeFile, String userName,long specifiedId) {
 		boolean isNotSpecifiedId = (specifiedId == 0);
 		boolean found = false;
+		System.out.println("ユーザー名: " +userName);
 		try {
 			ArrayList<RecipeData> recipeDataList = readRecipeData(recipeFile);
 			for(RecipeData data: recipeDataList){
