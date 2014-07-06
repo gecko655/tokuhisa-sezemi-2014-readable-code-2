@@ -5,3 +5,6 @@
 
 ##仕様1
 特になし
+
+##仕様3
+例外処理を細かく行った．読み込み時に発生したIOExceptionとFileNotFoundExceptionの場合は出力されるエラーが異なる．

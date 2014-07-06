@@ -10,3 +10,6 @@ tokuhisa-sezemi-2014-readable-code-2
 4. [Package Explorer]からプロジェクトを選択し，Macの場合は[Shift][Command][F11]で実行
 
 引数を与える場合は，メニューの[Run]->[Run Configurations...]から設定
+
+# レシピデータのファイルフォーマット
+レシピデータを最初の1行に1個だけ書く．
