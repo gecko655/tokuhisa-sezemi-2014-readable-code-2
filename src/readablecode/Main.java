@@ -52,7 +52,7 @@ public class Main {
 			ArrayList<RecipeData> recipeDataList = readRecipeData(recipeFile);
 			for(RecipeData data: recipeDataList){
 				if(data.getRecipeId()==specifiedId||isNotSpecifiedId){
-					System.out.println(data.getRecipeId()+ ": "+ data.getRecipeName());
+					System.out.println(data.getRecipeId()+ ": "+ data.getRecipeName()+" "+data.getUrl());
 					found =true;
 				}
 			}
