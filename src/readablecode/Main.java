@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 
 
 public class Main {
@@ -21,8 +22,10 @@ public class Main {
 		String recipeDataFilePath = args[0];
 		File recipeFile = new File(recipeDataFilePath);
 		try {
-			String recipeData = readRecipeData(recipeFile);
-			System.out.println(recipeData);
+			ArrayList<ReceipeData> receipeDataList = readRecipeData(recipeFile);
+			for(ReceipeData data : receipeDataList) {
+				System.out.println(data.getRecipeName());
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			System.err.println("レシピデータのファイルが存在しません．");
@@ -32,12 +35,17 @@ public class Main {
 		}
 	}
 	
-	public static String readRecipeData(File receipeDataFile) throws FileNotFoundException, IOException {
+	public static ArrayList<ReceipeData> readRecipeData(File receipeDataFile) throws FileNotFoundException, IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(receipeDataFile));
-		String receipeData;
+		ArrayList<ReceipeData> receipeDataList = new ArrayList<ReceipeData>();
+
 		try {
-			receipeData = reader.readLine();
-			return receipeData;
+			while(reader.ready()) {
+				String receipeDataName = reader.readLine();
+				ReceipeData data = new ReceipeData(receipeDataName);
+				receipeDataList.add(data);
+			}
+			return receipeDataList;
 		} catch (IOException e) {
 			throw e;
 		} finally {

@@ -11,4 +11,4 @@ tokuhisa-sezemi-2014-readable-code-2
 5. [Package Explorer]からプロジェクトを選択し，Macの場合は[Shift][Command][F11]で実行 
 
 # レシピデータのファイルフォーマット
-レシピデータを最初の1行に1個だけ書く．
+レシピデータを1行に1個だけ書く．複数行可能．
