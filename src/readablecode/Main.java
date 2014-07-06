@@ -90,8 +90,14 @@ public class Main {
 		try {
 			int idCount = 0;
 			while(reader.ready()) {
-				String receipeDataName = reader.readLine();
-				RecipeData data = new RecipeData(idCount, receipeDataName);
+				String recipeEntry = reader.readLine();
+				String[] recipeAttr = recipeEntry.split(" ");
+				if(recipeAttr.length!=2){
+					throw new IOException();
+				}
+				String recipeName = recipeAttr[0];
+				String recipeUrl = recipeAttr[1];
+				RecipeData data = new RecipeData(idCount, recipeName,recipeUrl);
 				receipeDataList.add(data);
 				idCount += 1;
 			}
